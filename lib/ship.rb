@@ -11,6 +11,11 @@ class Ship
     @sunk = sunk?
   end
 
+
+  # def sunk?
+  #   false unless @health == 0
+  # end
+
   def sunk?
     if @health > 0
       false
