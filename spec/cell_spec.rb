@@ -32,4 +32,21 @@ RSpec.describe Cell do
         expect(@cell.empty?).to eq(false)
       end
     end
+
+    describe '#fired_upon?' do
+      it 'checks if a cell has been fired upon' do
+        @cell.place_ship(@cruiser)
+        expect(@cell.fired_upon?).to eq(false)
+      end
+    end
+
+    describe '#fire_upon' do
+      it 'fires at a cell' do
+        @cell.place_ship(@cruiser)
+        expect(@cell.fired_upon?).to eq(false)
+        @cell.fire_upon
+        expect(@cell.ship.health).to eq(2)
+        expect(@cell.fired_upon?).to eq(true)
+      end
+    end
 end
