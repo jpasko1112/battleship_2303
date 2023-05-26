@@ -1,6 +1,6 @@
 class Cell 
 
-  attr_reader :coordinate, :ship, :empty, :fired_upon
+  attr_reader :coordinate, :ship, :fired_upon
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
@@ -39,15 +39,15 @@ class Cell
       'X'
     elsif @fired_upon == true && empty? == false
       'H'
-    elsif @fiired_upon == false
+    elsif @fired_upon == false
       '.'
     end
+  end
 
     # def render(arg)
     #   arg == true
     #   p 'S'
     # end
-  end
 
   #   if fire_upon && @empty
   #     p 'M'
