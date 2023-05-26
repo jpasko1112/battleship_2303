@@ -24,6 +24,10 @@ class Ship
   # end
 
   def hit
+    if @health > 0
     @health -= 1
+    else
+      'Invalid Move!'
+    end
   end
 end
