@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-RSpec.describe Cell do 
-    before(:each) do 
+RSpec.describe Cell do
+    before(:each) do
         @cell = Cell.new("B4")
         @cruiser = Ship.new("Cruiser", 3)
     end
@@ -9,14 +9,14 @@ RSpec.describe Cell do
     describe '#initialize' do
       it 'can initialize' do
         expect(@cell).to be_a(Cell)
-      end 
+      end
     end
 
     describe '#coordinate' do
       it 'can coordinate cell location' do
         expect(@cell.coordinate).to eq("B4")
-      end   
-    end  
+      end
+    end
 
     describe '#ship' do
       it 'can see if ship is in coordinate' do
@@ -32,4 +32,4 @@ RSpec.describe Cell do
         expect(@cell.empty?).to eq(false)
       end
     end
-end
+end 
