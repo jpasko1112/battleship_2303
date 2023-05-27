@@ -26,14 +26,14 @@ class Board
     @cells.key?(coordinate)
   end
 
-  # def valid_placement?(ship, [coordinates])
-  #   if cell.coordinates.length == ship.length 
-  # end
+  def valid_placement?(ship, coordinates)
+    coordinates.length == ship.length && consecutive(coordinates) && overlapping?(coordinates)
+  end
 
   # ---helper methods---
 
-  def consecutive 
-    
+  def consecutive(coordinates)
+    (same_letter?(coordinates) && horizontal?(coordinates)) || (same_number?(coordinates) && vertical?(coordinates))
   end 
 
   def same_number?(coordinates)
@@ -50,7 +50,7 @@ class Board
     letters.uniq.count == 1 
   end
 
-  def verticle?(coordinates)
+  def vertical?(coordinates)
     cord_ltrs = coordinates.map do |coordinate|
       coordinate[0] 
     end
@@ -62,7 +62,8 @@ class Board
     cord_nums = coordinates.map do |coordinate|
       coordinate[1] 
     end
-    range = cord_nums[0]..cord_nums[-1]
+    range = cord_nums[0]..cord_nums[-1] #|| range = cord_nums[4]..cord_nums[0]
+    
     cord_nums == range.to_a
   end
 
