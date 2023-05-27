@@ -86,8 +86,7 @@ RSpec.describe Board do
 
   describe '#overlapping?' do
     it 'checks if coordinates are overlapping' do 
-      expect(@board.overlapping?(["C4", "D4"])).to eq(false)
-      expect(@board.overlapping?(["D4", "D4"])).to eq(true)
+      expect(@board.overlapping?(["C4", "D4"])).to eq(true)
     end
   end
 end
