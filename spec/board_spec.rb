@@ -48,27 +48,33 @@ RSpec.describe Board do
     end
   end
 
-  # describe '#valid_placement? Length & consecutive' do
-  #   it 'can check if placement is valid: ship length, consecutive' do 
-  #     expect(@board.valid_placement?(cruiser, ["A1", "A2"])).to eq(false)
-  #     expect(@board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
+  describe '#valid_placement? Length & consecutive' do
+    it 'can check if placement is valid: ship length, consecutive' do 
+      expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to eq(false)
+      expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A3"])).to eq(true)
 
-  #     expect(@board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)
-  #     expect(@board.valid_placement?(submarine, ["A3", "A4"])).to eq(true)
-  #   end
-  # end
+      expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)
+      expect(@board.valid_placement?(@submarine, ["A3", "A4"])).to eq(true)
+    end
 
-  # describe '#valid_placement? Diagonal' do 
-  #   it 'can check if placement is valid: ship length, diagonal' do 
-  #     expect(@board.valid_placement(@submarine, ["C2", "D3"])).to eq(false)
-  #     expect(@board.valid_placement(@submarine, ["D2", "D3"])).to eq(true)
+    it 'checks if coordinates are consecutive' do
+      expect(@board.valid_placement?(@cruiser, ['A1', 'A2', 'A4'])).to eq(false)
+      expect(@board.valid_placement?(@submarine, ['A1', 'C1'])).to eq(false)
+      expect(@board.valid_placement?(@cruiser, ['A3', 'A2', 'A1'])).to eq(false)
+      expect(@board.valid_placement?(@submarine, ['C1', 'B1'])).to eq(false)
+    end
 
-  #     expect(@board.valid_placement(@submarine, ["C2", "D3"])).to eq(false)
-  #     expect(@board.valid_placement(@submarine, ["C2", "C3"])).to eq(true)
-  #   end
-  # end
+    it 'can check if placement is not diagonal' do 
+      expect(@board.valid_placement?(@cruiser, ['A1', 'B2', 'C3'])).to eq(false)
+      expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to eq(false)
+    end
+  end
+
+
 
 # ---HELPER METHODS TEST---
+
+
 
   describe '#same_number?' do
     it 'can check for duplicate coordinate numbers' do 
@@ -91,10 +97,10 @@ RSpec.describe Board do
     end
   end 
 
-  describe '#verticle?' do
-    it 'can check if coordinates are verticle' do 
-      expect(@board.verticle?(["A1", "A2", "A3"])).to eq(false)
-      expect(@board.verticle?(["A1", "B1", "C1"])).to eq(true)
+  describe '#vertical?' do
+    it 'can check if coordinates are vertical' do 
+      expect(@board.vertical?(["A1", "A2", "A3"])).to eq(false)
+      expect(@board.vertical?(["A1", "B1", "C1"])).to eq(true)
     end
   end
 
