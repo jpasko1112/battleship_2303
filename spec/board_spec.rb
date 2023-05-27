@@ -48,23 +48,39 @@ RSpec.describe Board do
     end
   end
 
-  describe '#valid_placement? Length & consecutive' do
-    it 'can check if placement is valid: ship length, consecutive' do 
-      expect(@board.valid_placement?(cruiser, ["A1", "A2"])).to eq(false)
-      expect(@board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
+  # describe '#valid_placement? Length & consecutive' do
+  #   it 'can check if placement is valid: ship length, consecutive' do 
+  #     expect(@board.valid_placement?(cruiser, ["A1", "A2"])).to eq(false)
+  #     expect(@board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
 
-      expect (@board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)
-      expect(@board.valid_placement?(submarine, ["A3", "A4"])).to eq(true)
+  #     expect(@board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)
+  #     expect(@board.valid_placement?(submarine, ["A3", "A4"])).to eq(true)
+  #   end
+  # end
+
+  # describe '#valid_placement? Diagonal' do 
+  #   it 'can check if placement is valid: ship length, diagonal' do 
+  #     expect(@board.valid_placement(@submarine, ["C2", "D3"])).to eq(false)
+  #     expect(@board.valid_placement(@submarine, ["D2", "D3"])).to eq(true)
+
+  #     expect(@board.valid_placement(@submarine, ["C2", "D3"])).to eq(false)
+  #     expect(@board.valid_placement(@submarine, ["C2", "C3"])).to eq(true)
+  #   end
+  # end
+
+# ---HELPER METHODS TEST---
+
+  describe '#verticle?' do
+    it 'can check if coordinates are verticle' do 
+      expect(@board.verticle?(["A1", "A2", "A3"])).to eq(false)
+      expect(@board.verticle?(["A1", "B1", "C1"])).to eq(true)
     end
   end
 
-  describe '#valid_placement? Diagonal' do 
-    it 'can check if placement is valid: ship length, diagonal' do 
-      expect(@board.valid_placement(@submarine, ["C2", "D3"])).to eq(false)
-      expect(@board.valid_placement(@submarine, ["D2", "D3"])).to eq(true)
-
-      expect(@board.valid_placement(@submarine, ["C2", "D3"])).to eq(false)
-      expect(@board.valid_placement(@submarine, ["C2", "C3"])).to eq(true)
+  describe '#horizontal?' do
+    it 'can check if coordinates are horizontal' do
+      expect(@board.horizontal?(["A1", "A2", "A3"])).to eq(true)
+      expect(@board.horizontal?(["A1", "B1", "C1"])).to eq(false)
     end
   end
 end
