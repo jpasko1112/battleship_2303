@@ -70,6 +70,27 @@ RSpec.describe Board do
 
 # ---HELPER METHODS TEST---
 
+  describe '#same_number?' do
+    it 'can check for duplicate coordinate numbers' do 
+      expect(@board.same_number?(["A2", "A3", "A4"])).to eq(false)
+      expect(@board.same_number?(["A2", "B2", "C2"])).to eq(true)
+    end
+  end 
+
+  describe '#same_letter?' do
+    it 'can check for duplicate coordinate letters' do 
+      expect(@board.same_letter?(["A2", "A3", "A4"])).to eq(true)
+      expect(@board.same_letter?(["A2", "B2", "C2"])).to eq(false)
+    end
+  end 
+
+  describe '#same_letter?' do
+    it 'can check for duplicate coordinate letters' do 
+      expect(@board.same_letter?(["A2", "A3", "A4"])).to eq(true)
+      expect(@board.same_letter?(["A2", "B2", "C2"])).to eq(false)
+    end
+  end 
+
   describe '#verticle?' do
     it 'can check if coordinates are verticle' do 
       expect(@board.verticle?(["A1", "A2", "A3"])).to eq(false)

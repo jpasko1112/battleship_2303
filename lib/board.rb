@@ -36,6 +36,20 @@ class Board
     
   end 
 
+  def same_number?(coordinates)
+    numbers = coordinates.map do |coordinate|
+      coordinate[1]
+    end
+    numbers.uniq.count == 1
+  end
+
+  def same_letter?(coordinates)
+    letters = coordinates.map do |coordinate|
+      coordinate[0]
+    end
+    letters.uniq.count == 1 
+  end
+
   def verticle?(coordinates)
     cord_ltrs = coordinates.map do |coordinate|
       coordinate[0] 
@@ -58,4 +72,3 @@ class Board
     end
   end
 end
-
