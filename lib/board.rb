@@ -31,7 +31,7 @@ class Board
   # end
 
   # ---helper methods---
-  
+
   def consecutive 
     
   end 
@@ -50,6 +50,12 @@ class Board
     end
     range = cord_nums[0]..cord_nums[-1]
     cord_nums == range.to_a
+  end
+
+  def overlapping?(coordinates)
+    coordinates.all? do |coordinate|
+      @cells[coordinate].empty? 
+    end
   end
 end
 
