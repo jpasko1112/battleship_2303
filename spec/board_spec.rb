@@ -17,24 +17,23 @@ RSpec.describe Board do
 
   describe '#cells' do
     it 'can hold cells' do 
-      expect(@board.cells).to be_a(Hash)({
-        "A1" => Cell.new,
-        "A2" => Cell.new, 
-        "A3" => Cell.new, 
-        "A4" => Cell.new, 
-        "B1" => Cell.new, 
-        "B2" => Cell.new, 
-        "B3" => Cell.new,
-        "B4" => Cell.new, 
-        "C1" => Cell.new,
-        "C2" => Cell.new, 
-        "C3" => Cell.new, 
-        "C4" => Cell.new, 
-        "D1" => Cell.new, 
-        "D2" => Cell.new, 
-        "D3" => Cell.new, 
-        "D4" => Cell.new 
-      })
+      expect(@board.cells).to be_a(Hash)
+      expect(@board.cells['A1']).to be_a(Cell)
+      expect(@board.cells['A2']).to be_a(Cell)
+      expect(@board.cells['A3']).to be_a(Cell)
+      expect(@board.cells['A4']).to be_a(Cell)
+      expect(@board.cells['B1']).to be_a(Cell)
+      expect(@board.cells['B2']).to be_a(Cell)
+      expect(@board.cells['B3']).to be_a(Cell)
+      expect(@board.cells['B4']).to be_a(Cell)
+      expect(@board.cells['C1']).to be_a(Cell)
+      expect(@board.cells['C2']).to be_a(Cell)
+      expect(@board.cells['C3']).to be_a(Cell)
+      expect(@board.cells['C4']).to be_a(Cell)
+      expect(@board.cells['D1']).to be_a(Cell)
+      expect(@board.cells['D2']).to be_a(Cell)
+      expect(@board.cells['D3']).to be_a(Cell)
+      expect(@board.cells['D4']).to be_a(Cell)
     end
   end
 
