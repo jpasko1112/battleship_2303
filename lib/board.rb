@@ -25,4 +25,31 @@ class Board
   def valid_coordinate?(coordinate)
     @cells.key?(coordinate)
   end
+
+  # def valid_placement?(ship, [coordinates])
+  #   if cell.coordinates.length == ship.length 
+  # end
+
+  # ---helper methods---
+  
+  def consecutive 
+    
+  end 
+
+  def verticle?(coordinates)
+    cord_ltrs = coordinates.map do |coordinate|
+      coordinate[0] 
+    end
+    range = cord_ltrs[0]..cord_ltrs[-1]
+    cord_ltrs == range.to_a
+  end
+
+  def horizontal?(coordinates)
+    cord_nums = coordinates.map do |coordinate|
+      coordinate[1] 
+    end
+    range = cord_nums[0]..cord_nums[-1]
+    cord_nums == range.to_a
+  end
 end
+
