@@ -30,8 +30,8 @@ class Cell
   # 'M' if fire_upon but no ship,
   # 'H' if fire_upon and contains a ship,
   # 'X' if fire_upon and ship is sunk.
-  def render(default = false)
-    if @fired_upon == false && empty? == false && default == true
+  def render(show_ship = false)
+    if @fired_upon == false && empty? == false && show_ship == true
       'S'
     elsif @fired_upon == true && empty? == true
       'M'
@@ -43,20 +43,4 @@ class Cell
       '.'
     end
   end
-
-    # def render(arg)
-    #   arg == true
-    #   p 'S'
-    # end
-
-  #   if fire_upon && @empty
-  #     p 'M'
-  #   elsif fire_upon && place_ship(ship)
-  #     p 'H'
-  #   elsif fire_upon && place_ship(ship) && ship.sunk
-  #     p 'X'
-  #   else 
-  #     # p '.'
-  #   end
-  # end
 end
