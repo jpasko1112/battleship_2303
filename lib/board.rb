@@ -30,6 +30,12 @@ class Board
     coordinates.length == ship.length && consecutive(coordinates) && overlapping?(coordinates)
   end
 
+  def place(ship, coordinates)
+    coordinates.map do |coordinate|
+      @cells[coordinate].place_ship(ship)
+    end
+  end
+
   # ---helper methods---
 
   def consecutive(coordinates)
@@ -37,10 +43,9 @@ class Board
   end 
 
   def same_number?(coordinates)
-    numbers = coordinates.map do |coordinate|
+    coordinates.map do |coordinate|
       coordinate[1]
-    end
-    numbers.uniq.count == 1
+    end.uniq.count == 1
   end
 
   def same_letter?(coordinates)
