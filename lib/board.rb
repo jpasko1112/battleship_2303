@@ -27,7 +27,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    coordinates.length == ship.length && consecutive(coordinates) && overlapping?(coordinates)
+    coordinates.length == ship.length && consecutive(coordinates) && not_overlapping?(coordinates)
   end
 
   def place(ship, coordinates)
@@ -70,7 +70,7 @@ class Board
     cord_nums == range.to_a
   end
 
-  def overlapping?(coordinates)
+  def not_overlapping?(coordinates)
     coordinates.all? do |coordinate|
       @cells[coordinate].empty? 
     end
