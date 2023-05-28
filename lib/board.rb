@@ -1,7 +1,7 @@
 class Board 
-
   attr_reader :cells 
-  def initialize 
+
+  def initialize
     @cells = {        
     "A1" => Cell.new("A1"),
     "A2" => Cell.new("A2"), 
@@ -58,7 +58,7 @@ class Board
     cord_ltrs = coordinates.map do |coordinate|
       coordinate[0] 
     end
-    range = cord_ltrs[0]..cord_ltrs[-1]
+    range = cord_ltrs.first..cord_ltrs.last
     cord_ltrs == range.to_a
   end
 
@@ -66,8 +66,7 @@ class Board
     cord_nums = coordinates.map do |coordinate|
       coordinate[1] 
     end
-    range = cord_nums[0]..cord_nums[-1] #|| range = cord_nums[4]..cord_nums[0]
-    
+    range = cord_nums.first..cord_nums.last
     cord_nums == range.to_a
   end
 
