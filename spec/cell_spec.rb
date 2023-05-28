@@ -28,6 +28,7 @@ RSpec.describe Cell do
     describe '#place_ship' do
       it 'places ship in cell' do
         expect(@cell_1.ship).to eq(nil)
+        expect(@cell_1.empty?).to eq(true)
         @cell_1.place_ship(@cruiser)
         expect(@cell_1.ship).to eq(@cruiser)
         expect(@cell_1.empty?).to eq(false)
