@@ -49,10 +49,9 @@ class Board
   end
 
   def same_letter?(coordinates)
-    letters = coordinates.map do |coordinate|
+    coordinates.map do |coordinate|
       coordinate[0]
-    end
-    letters.uniq.count == 1 
+    end.uniq.count == 1 
   end
 
   def vertical?(coordinates)
