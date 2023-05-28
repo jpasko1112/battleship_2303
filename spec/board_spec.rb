@@ -5,6 +5,9 @@ RSpec.describe Board do
     @board = Board.new 
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
+    @cell_1 = @board.cells['A1']
+    @cell_2 = @board.cells['A2']
+    @cell_3 = @board.cells['A3']
   end
 
   describe '#initialize' do 
@@ -67,6 +70,19 @@ RSpec.describe Board do
     it 'can check if placement is not diagonal' do 
       expect(@board.valid_placement?(@cruiser, ['A1', 'B2', 'C3'])).to eq(false)
       expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to eq(false)
+    end
+  end
+
+  describe '#place(ship, [coordinates])' do
+    it 'can place a ship on given coordinates' do
+      @board.place(@cruiser, ['A1', 'A2', 'A3'])
+      expect(@cell_1).to eq(@board.cells['A1'])
+      expect(@cell_2).to eq(@board.cells['A2'])
+      expect(@cell_3).to eq(@board.cells['A3'])
+      expect(@cell_1.ship).to eq(@cruiser)
+      expect(@cell_2.ship).to eq(@cruiser)
+      expect(@cell_3.ship).to eq(@cruiser)
+      expect(@cell_3.ship == @cell_2.ship).to eq(true)
     end
   end
 
