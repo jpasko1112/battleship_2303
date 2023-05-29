@@ -5,6 +5,9 @@ RSpec.describe Board do
     @board = Board.new 
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
+    @cell_1 = @board.cells['A1']
+    @cell_2 = @board.cells['A2']
+    @cell_3 = @board.cells['A3']
   end
 
   describe '#initialize' do 
@@ -70,6 +73,19 @@ RSpec.describe Board do
     end
   end
 
+  describe '#place(ship, [coordinates])' do
+    it 'can place a ship on given coordinates' do
+      @board.place(@cruiser, ['A1', 'A2', 'A3'])
+      expect(@cell_1).to eq(@board.cells['A1'])
+      expect(@cell_2).to eq(@board.cells['A2'])
+      expect(@cell_3).to eq(@board.cells['A3'])
+      expect(@cell_1.ship).to eq(@cruiser)
+      expect(@cell_2.ship).to eq(@cruiser)
+      expect(@cell_3.ship).to eq(@cruiser)
+      expect(@cell_3.ship == @cell_2.ship).to eq(true)
+    end
+  end
+
   describe '#place' do
     it 'can place a ship in given coordinates' do 
       @board.place(@cruiser, ["A1", "A2", "A3"])
@@ -124,9 +140,9 @@ RSpec.describe Board do
     end
   end
 
-  describe '#overlapping?' do
+  describe '#not_overlapping?' do
     it 'checks if coordinates are overlapping' do 
-      expect(@board.overlapping?(["C4", "D4"])).to eq(true)
+      expect(@board.not_overlapping?(["C4", "D4"])).to eq(true)
     end
   end
 end

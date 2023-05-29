@@ -1,7 +1,7 @@
 class Board 
-
   attr_reader :cells 
-  def initialize 
+
+  def initialize
     @cells = {        
     "A1" => Cell.new("A1"),
     "A2" => Cell.new("A2"), 
@@ -27,7 +27,13 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    coordinates.length == ship.length && consecutive(coordinates) && overlapping?(coordinates)
+    coordinates.length == ship.length && consecutive(coordinates) && not_overlapping?(coordinates)
+  end
+
+  def place(ship, coordinates)
+    coordinates.map do |coordinate|
+      @cells[coordinate].place_ship(ship)
+    end
   end
 
   # assigning a ship to cells at given coordinates
@@ -46,24 +52,22 @@ class Board
   end 
 
   def same_number?(coordinates)
-    numbers = coordinates.map do |coordinate|
+    coordinates.map do |coordinate|
       coordinate[1]
-    end
-    numbers.uniq.count == 1
+    end.uniq.count == 1
   end
 
   def same_letter?(coordinates)
-    letters = coordinates.map do |coordinate|
+    coordinates.map do |coordinate|
       coordinate[0]
-    end
-    letters.uniq.count == 1 
+    end.uniq.count == 1 
   end
 
   def vertical?(coordinates)
     cord_ltrs = coordinates.map do |coordinate|
       coordinate[0] 
     end
-    range = cord_ltrs[0]..cord_ltrs[-1]
+    range = cord_ltrs.first..cord_ltrs.last
     cord_ltrs == range.to_a
   end
 
@@ -71,12 +75,11 @@ class Board
     cord_nums = coordinates.map do |coordinate|
       coordinate[1] 
     end
-    range = cord_nums[0]..cord_nums[-1] #|| range = cord_nums[4]..cord_nums[0]
-    
+    range = cord_nums.first..cord_nums.last
     cord_nums == range.to_a
   end
 
-  def overlapping?(coordinates)
+  def not_overlapping?(coordinates)
     coordinates.all? do |coordinate|
       @cells[coordinate].empty? 
     end
