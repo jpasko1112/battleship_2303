@@ -30,9 +30,10 @@ class Board
     coordinates.length == ship.length && consecutive(coordinates) && overlapping?(coordinates)
   end
 
+  # assigning a ship to cells at given coordinates
   def place(ship,coordinates) 
     # if valid_placement?(ship, coordinates) && valid_coordinate?(coordinates)
-      @cell.place_ship(ship)
+    # @cells.cell.place_ship(ship)
     # else 
     #   "Those are invalid coordinates. Please try again:"
     # end
