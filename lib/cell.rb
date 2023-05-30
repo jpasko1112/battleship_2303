@@ -26,18 +26,14 @@ class Cell
     end
   end
 
-  # When render, should return '.' if cell has not been fired upon,
-  # 'M' if fire_upon but no ship,
-  # 'H' if fire_upon and contains a ship,
-  # 'X' if fire_upon and ship is sunk.
   def render(show_ship = false)
-    if @fired_upon == false && empty? == false && show_ship == true
+    if !@fired_upon && !empty? && show_ship
       'S'
-    elsif @fired_upon == true && empty? == true
+    elsif @fired_upon && empty?
       'M'
-    elsif @fired_upon == true && empty? == false && @ship.sunk?
+    elsif @fired_upon && empty? == false && @ship.sunk?
       'X'
-    elsif @fired_upon == true && empty? == false
+    elsif @fired_upon && empty? == false
       'H'
     elsif @fired_upon == false
       '.'
