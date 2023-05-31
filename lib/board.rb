@@ -27,7 +27,9 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    coordinates.length == ship.length && consecutive(coordinates) && not_overlapping?(coordinates)
+    coordinates.length == ship.length && consecutive(coordinates) &&
+    coordinates.all? { |coordinate| valid_coordinate?(coordinate)} &&
+    not_overlapping?(coordinates)
   end
 
   def place(ship, coordinates)
