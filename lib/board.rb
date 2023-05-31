@@ -55,7 +55,8 @@ end
   # ---helper methods---
 
   def consecutive(coordinates)
-    (same_letter?(coordinates) && horizontal?(coordinates)) || (same_number?(coordinates) && vertical?(coordinates))
+    (same_letter?(coordinates) && horizontal?(coordinates)) || 
+    (same_number?(coordinates) && vertical?(coordinates))
   end 
 
   def same_number?(coordinates)

@@ -14,18 +14,9 @@ class Ship
     @health == 0
   end
 
-  # def sunk?
-  #   if @health > 0
-  #     false
-  #   elsif
-  #     @health == 0
-  #     true
-  #   end
-  # end
-
   def hit
     if @health > 0
-    @health -= 1
+      @health -= 1
     else
       'Invalid Move!'
     end
