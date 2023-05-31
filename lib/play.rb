@@ -29,7 +29,7 @@ puts "                                      |__
      |                                                                   BB-61/
       \_______________________________________________________________________|
 "
-    sleep(0.5)
+    # sleep(0.5)
     puts "██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗        ████████╗ ██████╗         ██████╗  █████╗ ████████╗████████╗██╗     ███████╗███████╗██╗  ██╗██╗██████╗     ██╗    ██╗
 ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝        ╚══██╔══╝██╔═══██╗        ██╔══██╗██╔══██╗╚══██╔══╝╚══██╔══╝██║     ██╔════╝██╔════╝██║  ██║██║██╔══██╗    ██║    ██║
 ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗             ██║   ██║   ██║        ██████╔╝███████║   ██║      ██║   ██║     █████╗  ███████╗███████║██║██████╔╝    ██║    ██║
@@ -37,25 +37,25 @@ puts "                                      |__
 ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗           ██║   ╚██████╔╝        ██████╔╝██║  ██║   ██║      ██║   ███████╗███████╗███████║██║  ██║██║██║         ██╗    ██╗
  ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝           ╚═╝    ╚═════╝         ╚═════╝ ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝         ╚═╝    ╚═╝
                                                                                                                                                                                           \n"
-    sleep(1.0)
+    # sleep(1.0)
     puts "Who's reporting for duty? (ENTER NAME)"
     name = gets.chomp.capitalize
-    sleep(1.0)
+    # sleep(1.0)
     puts "#{name} prepare for BATTLE!" 
-    sleep(1.0)
+    # sleep(1.0)
     puts "Enter p to play.\n"
-    sleep(1.0)
+    # sleep(1.0)
     puts "Enter q to quit."
     input = gets.chomp 
     if input == "p"
-      sleep(1.0)
+      # sleep(1.0)
       puts "Man your Battle Stations!!"
     elsif input == "q"
-      sleep(1.0)
+      # sleep(1.0)
       puts "Abandon Ship!!"
       menu 
     else 
-      sleep(1.0)
+      # sleep(1.0)
       puts "Misfire. Choose another option."
       menu
     end
@@ -70,27 +70,61 @@ puts "                                      |__
     puts "The Cruiser is three units long and the Submarine is two units long."
   end
 
-def user_cruiser_placement 
-  puts "Enter squares for your Cruiser (3 spaces):"
-  user_cruiser_input = gets.chomp.upcase.split 
-  if @user_board.valid_placement?(@user_cruiser, user_cruiser_input) == true 
-    @user_board.place(@user_cruiser, user_cruiser_input)
-  else
-    puts "Those are invalid coordinates. Please try again."
-    user_cruiser_placement 
-  end
-end 
+  def user_cruiser_placement 
+    puts "Enter squares for your Cruiser (3 spaces):"
+    user_cruiser_input = gets.chomp.upcase.split 
+    if @user_board.valid_placement?(@user_cruiser, user_cruiser_input) == true 
+      @user_board.place(@user_cruiser, user_cruiser_input)
+    else
+      puts "Those are invalid coordinates. Please try again."
+      user_cruiser_placement 
+    end
+  end 
 
-def user_sub_placement 
-  puts "Enter squares for your Submarine (2 spaces):"
-  user_sub_input = gets.chomp.upcase.split 
-  if @user_board.valid_placement?(@user_sub, user_sub_input) == true 
-    @user_board.place(@user_sub, user_sub_input)
-  else
-    puts "Those are invalid coordinates. Please try again."
-    user_sub_placement 
+  def user_sub_placement 
+    puts "Enter squares for your Submarine (2 spaces):"
+    user_sub_input = gets.chomp.upcase.split 
+    if @user_board.valid_placement?(@user_sub, user_sub_input) == true 
+      @user_board.place(@user_sub, user_sub_input)
+    else
+      puts "Those are invalid coordinates. Please try again."
+      user_sub_placement 
+    end
   end
-end 
+
+  def turn
+    puts @comp_board.render
+    puts @user_board.render(true)
+    # user turn-----------------------------------
+    puts "Enter the coordinate for your shot:"
+    user_choice = gets.chomp.upcase
+    if @comp_board.valid_coordinate?(user_choice) == true && 
+      @comp_board.cells[user_choice].fired_upon? == false
+      @comp_board.cells[user_choice].fire_upon
+      user_result = @comp_board.cells[user_choice].render
+      if user_result == "X"
+        @comp_sunk_ships += 1
+      end
+    else
+      puts "Please enter a valid coordinate."
+      turn
+    end
+    # comp turn------------------------
+    comp_choice = @user_board.cells.keys.sample(1).join
+    until @user_board.cells[comp_choice].fired_upon? == false
+      comp_choice = @user_board.cells.keys.sample(1).join
+    end
+    @user_board.cells[comp_choice].fire_upon
+    comp_result = @user_board.cells[comp_choice].render(true)
+    if comp_result == "X"
+      @user_sunk_ships += 1
+    end
+    puts "Your shot on #{user_choice} was a #{user_result}."
+    puts "My shot on #{comp_choice} was a #{comp_result}."
+    turn
+    # end?
+  end
+
 
 # ----HELPER METHOD----
 
