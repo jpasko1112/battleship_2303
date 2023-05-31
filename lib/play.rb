@@ -121,10 +121,21 @@ puts "                                      |__
     end
     puts "Your shot on #{user_choice} was a #{user_result}."
     puts "My shot on #{comp_choice} was a #{comp_result}."
-    turn
-    # end?
+    game_over?
   end
 
+  def game_over?
+    if @user_sunk_ships == 2
+      puts "You can't defeat me you poor excuse for a sea-person!"
+      menu
+    elsif
+      @comp_sunk_ships == 2
+      puts "I am not a worthy sea-person, for I am but a computer!"
+      menu
+    else
+      turn
+    end
+  end
 
 # ----HELPER METHOD----
 
