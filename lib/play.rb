@@ -38,11 +38,11 @@ class Play < GameLogic
 
   def game_over?
     if @user_sunk_ships == 2
-      puts "You can't defeat me you poor excuse for a sea-person!"
+      puts "You can't defeat me you poor excuse for a Sailor!"
       self.play_game
     elsif
       @comp_sunk_ships == 2
-      puts "I am not a worthy sea-person, for I am but a computer!"
+      puts "I am not a worthy Sailor, for I am but a computer!"
       self.play_game
     else
       turn
