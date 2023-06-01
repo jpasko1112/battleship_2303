@@ -129,4 +129,16 @@ sleep(1.0)
     puts "My shot on #{comp_choice} was a #{comp_result}."
     game_over?
   end
+
+  def new_game
+    @comp_board = Board.new 
+    @comp_cruiser = Ship.new("Cruiser", 3)
+    @comp_sub = Ship.new("Submarine", 2)
+    @comp_sunk_ships = 0 
+    
+    @user_board = Board.new 
+    @user_cruiser = Ship.new("Cruiser", 3)
+    @user_sub = Ship.new("Submarine", 2)
+    @user_sunk_ships = 0
+  end
 end

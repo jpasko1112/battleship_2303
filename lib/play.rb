@@ -23,6 +23,7 @@ class Play < GameLogic
     user_fleet_placement
     turn
     game_over?
+    new_game
   end
 
   def comp_fleet_placement 
