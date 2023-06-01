@@ -1,7 +1,9 @@
-class Play 
+require_relative './user_play'
+class Play < UserPlay
     attr_reader :comp_board, :comp_sunk_ships, :comp_cruiser, 
                 :comp_sub, :user_board, :user_sunk_ships,
                 :user_cruiser, :user_sub
+            
   def initialize 
     @comp_board = Board.new 
     @comp_cruiser = Ship.new("Cruiser", 3)
@@ -12,6 +14,15 @@ class Play
     @user_cruiser = Ship.new("Cruiser", 3)
     @user_sub = Ship.new("Submarine", 2)
     @user_sunk_ships = 0
+  end
+
+  def play_game
+    require 'pry'; binding.pry
+    menu
+    comp_ship_placement
+    user_cruiser_placement
+    user_sub_placement
+    turn
   end
 
   def menu 
@@ -95,7 +106,11 @@ puts "                                      |__
   def turn
     puts @comp_board.render
     puts @user_board.render(true)
+    player_turn
+    comp_turn
+  end
     # user turn-----------------------------------
+  def player_turn
     puts "Enter the coordinate for your shot:"
     user_choice = gets.chomp.upcase
     if @comp_board.valid_coordinate?(user_choice) == true && 
@@ -109,7 +124,9 @@ puts "                                      |__
       puts "Please enter a valid coordinate."
       turn
     end
+  end
     # comp turn------------------------
+  def comp_turn
     comp_choice = @user_board.cells.keys.sample(1).join
     until @user_board.cells[comp_choice].fired_upon? == false
       comp_choice = @user_board.cells.keys.sample(1).join
